@@ -5,7 +5,7 @@
         <div class="card">
 
             <div class="card-header text-center bg-warning">
-                <h3>แก้ไขข้อมูลการจอง</h3>
+                <h3>จัดการข้อมูลการจอง</h3>
             </div>
             <div class=" card-body">
                 <div class="mb-3" style="margin-left:95%">
@@ -70,7 +70,6 @@
 
             </div>
         </div>
-        <br>
         <div class="card">
             <div class=" card-body">
                 <form action="{{ route('bookingroom.update', $booking->booking_id) }}" method="POST">

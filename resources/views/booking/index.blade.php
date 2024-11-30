@@ -83,7 +83,7 @@
                                         </a>
                                     </td>
                                 @endif
-                                @if ($booking->doc_status == 2)
+                                @if ($booking->doc_status == 1 || $booking->doc_status == 2)
                                     <td align="center" width="5%">
                                         {{-- <form id="send-form-{{ $booking->booking_id }}"
                                             action="{{ route('booking.cancel') }}" method="POST" style="display: none;">
@@ -215,12 +215,13 @@
 
         function sendBooking(bookingId) {
             Swal.fire({
-                title: 'Are you sure you want to send this booking?',
+                // title: 'Are you sure you want to send this booking?',
+                title: 'คุณต้องการ "ส่งใบขออนุมัติ" ใช่หรือไม่?',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, send it!',
+                confirmButtonText: 'ใช่, ส่งเลย!',
                 cancelButtonText: 'Cancel'
             }).then((result) => {
                 if (result.isConfirmed) {
@@ -232,13 +233,14 @@
 
         function deleteBooking(bookingId) {
             Swal.fire({
-                title: 'Are you sure you want to delete this booking?',
+                // title: 'Are you sure you want to delete this booking?',
+                title: 'คุณต้องการ "ลบการจอง" ใช่หรือไม่?',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'Cancel'
+                confirmButtonText: 'ใช่, ลบเลย!',
+                cancelButtonText: 'ยกเลิก'
             }).then((result) => {
                 if (result.isConfirmed) {
                     document.getElementById('delete-form-' + bookingId).submit();

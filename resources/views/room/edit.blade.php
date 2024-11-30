@@ -11,13 +11,13 @@
                 @method('PUT')
 
                 <div class="mb-3">
-                    <label for="room_name" class="form-label">Room Name</label>
+                    <label for="room_name" class="form-label">ชื่อห้อง</label>
                     <input type="text" class="form-control" id="room_name" name="room_name"
                         value="{{ old('room_name', $room->room_name) }}" required>
                 </div>
 
                 <div class="mb-3">
-                    <label for="room_type" class="form-label">Room Type</label>
+                    <label for="room_type" class="form-label">ประเภทห้อง</label>
                     <select class="form-control" name="room_type" id="room_type" required>
                         <option value="" disabled>เลือกประเภทห้อง</option>
                         @foreach ($roomtypes as $type)
@@ -30,19 +30,19 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="capacity" class="form-label">Capacity</label>
+                    <label for="capacity" class="form-label">ความจุ</label>
                     <input type="number" class="form-control" id="capacity" name="capacity"
                         value="{{ old('capacity', $room->capacity) }}" min="1" required>
                 </div>
 
                 <div class="mb-3">
-                    <label for="description" class="form-label">Description</label>
+                    <label for="description" class="form-label">คำอธิบาย</label>
                     <textarea class="form-control" id="description" name="description" rows="3" required>{{ old('description', $room->description) }}</textarea>
                 </div>
 
                 <!-- Image upload field -->
                 <div class="mb-3">
-                    <label for="room_pic" class="form-label">Room Images:</label>
+                    <label for="room_pic" class="form-label">รูปภาพ</label>
                     <input type="file" name="room_pic[]" id="room_pic" class="form-control" multiple
                         onchange="previewImages(event)">
                 </div>

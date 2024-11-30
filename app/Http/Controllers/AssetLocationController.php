@@ -36,7 +36,7 @@ class AssetLocationController extends Controller
             'sect_id' => 'nullable|integer|exists:sect,sect_id',
             'location_type' => 'required|string',
             'is_current' => 'required|integer',
-            // 'moved_at' => 'required|date',
+            // 'moved_at' => 'required|datetime',
         ]);
 
         // AssetLocation::create($request->all());
@@ -60,7 +60,7 @@ class AssetLocationController extends Controller
             'sect_id' => 'nullable|integer|exists:sect,sect_id',
             'location_type' => 'required|string',
             'is_current' => 'required|integer',
-            'moved_at' => 'required|date',
+            'moved_at' => 'required|datetime',
         ]);
 
         $assetLocation = AssetLocation::findOrFail($id);

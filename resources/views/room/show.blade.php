@@ -8,11 +8,11 @@
 
             <div class="card-body">
                 <form id="searchForm" action="{{ route('rooms.search') }}" method="GET" class="mb-4">
-                    <div class="row" style="margin-left:43%;">
-                        <div class="col-md-3">
+                    <div class="row" style="margin-left:36%;">
+                        <div class="col-md-5">
                             <select name="roomtype" class="form-control"
                                 onchange="document.getElementById('searchForm').submit();">
-                                <option value="">-- เลือกประเภทห้อง --</option>
+                                <option value="" selected>-- เลือกประเภทห้อง --</option>
                                 @foreach ($roomtypes as $roomtype)
                                     <option value="{{ $roomtype->type_id }}"
                                         {{ request('roomtype') == $roomtype->room_type ? 'selected' : '' }}>
@@ -46,7 +46,7 @@
                                         <h6 class="card-title">ห้อง : {{ $room->room_name }}</h6>
                                         <p class="card-text">
                                             ประเภท : {{ $room->roomtype->name ?? '' }} <br>
-                                            ความจุ : {{ $room->capacity }} คน
+                                            {{-- ความจุ : {{ $room->capacity }} คน --}}
                                         </p>
                                         <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                             data-bs-target="#detailRoomModal{{ $room->room_id }}">

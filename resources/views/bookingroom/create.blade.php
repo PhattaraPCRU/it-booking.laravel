@@ -19,22 +19,22 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="participant_count" class="form-label">participant_count</label>
+                    <label for="participant_count" class="form-label">จำนวนผู้เข้าใช้</label>
                     <input type="text" class="form-control" id="participant_count" name="participant_count">
                 </div>
 
                 <div class="mb-3">
-                    <label for="date" class="form-label">date</label>
+                    <label for="date" class="form-label">วันที่เข้าใช้</label>
                     <input type="date" class="form-control" id="date" name="date">
                 </div>
 
                 <div class="mb-3">
-                    <label for="time_start" class="form-label">Time Start</label>
+                    <label for="time_start" class="form-label">เวลาเริ่ม</label>
                     <input id="timestart" name="time_start" type="text" placeholder="เลือกเวลาเริ่ม"
                         class="form-control">
                 </div>
                 <div class="mb-3">
-                    <label for="time_end" class="form-label">Time End</label>
+                    <label for="time_end" class="form-label">เวลาสิ้นสุด</label>
                     <input id="timeend" name="time_end" type="text" placeholder="เลือกเวลาสิ้นสุด"
                         class="form-control">
                 </div>

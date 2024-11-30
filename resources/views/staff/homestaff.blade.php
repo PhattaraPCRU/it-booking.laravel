@@ -57,7 +57,8 @@
                     hour: '2-digit',
                     minute: '2-digit',
                     hour12: false
-                }
+                },
+                height: 800, // กำหนดความสูงที่ต้องการ
             });
             calendar.render();
         });

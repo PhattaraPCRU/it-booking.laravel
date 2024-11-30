@@ -9,22 +9,22 @@
                 @csrf
                 @method('PUT')
                 <div class="form-group">
-                    <label for="type_name">Type Name:</label>
+                    <label for="type_name">ชื่อ</label>
                     <input type="text" name="type_name" id="type_name" class="form-control"
                         value="{{ $assetType->type_name }}" required>
                 </div>
                 <div class="form-group">
-                    <label for="description">Description:</label>
+                    <label for="description">คำอธิบาย</label>
                     <textarea name="description" id="description" class="form-control">{{ $assetType->description }}</textarea>
                 </div>
                 <div class="form-group">
-                    <label for="status">Status:</label>
+                    <label for="status">สถานะ</label>
                     <select name="status" id="status" class="form-control" required>
-                        <option value="1" {{ $assetType->status == 1 ? 'selected' : '' }}>Active</option>
-                        <option value="0" {{ $assetType->status == 0 ? 'selected' : '' }}>Inactive</option>
+                        <option value="1" {{ $assetType->status == 1 ? 'selected' : '' }}>เปิดใช้งาน</option>
+                        <option value="0" {{ $assetType->status == 0 ? 'selected' : '' }}>ปิดใช้งาน</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="submit" class="btn btn-primary">บันทึกข้อมูล</button>
             </form>
         </div>
     </div>

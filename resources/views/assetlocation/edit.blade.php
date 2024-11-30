@@ -33,7 +33,7 @@
                 <div class="form-group mb-3">
                     <label for="department_id">หน่วยงาน</label>
                     <select name="department_id" id="department_id" class="form-control" required>
-                        <option value="" disabled selected>เลือกหน่วยงาน</option>
+                        <option value="" selected>เลือกหน่วยงาน</option>
                         @foreach ($departments as $department)
                             <option value="{{ $department->department_id }}"
                                 data-department-code="{{ $department->department_code }}"
@@ -56,94 +56,6 @@
                         @endforeach
                     </select>
                 </div>
-
-                <script>
-                    $(document).ready(function() {
-                        var initialDepartmentCode = $('#department_id').find(':selected').data('department-code');
-                        var initialSectId = "{{ isset($assetLocation) ? $assetLocation->sect_id : '' }}";
-
-                        // หากมีค่า initialDepartmentCode แล้วให้ทำการโหลดข้อมูลหน่วยงานย่อย
-                        if (initialDepartmentCode) {
-                            loadSects(initialDepartmentCode, initialSectId);
-                            $('#sect_id').prop('disabled', false);
-                        }
-
-                        $('#department_id').on('change', function() {
-                            var departmentCode = $(this).find(':selected').data('department-code');
-
-                            if (departmentCode) {
-                                $('#sect_id').prop('disabled', false);
-                                loadSects(departmentCode);
-                            } else {
-                                $('#sect_id').prop('disabled', true).empty().append(
-                                    '<option value="" disabled selected>เลือกหน่วยงานย่อย</option>'
-                                );
-                            }
-                        });
-
-                        function loadSects(departmentCode, selectedSectId = null) {
-                            $.ajax({
-                                url: '/fetch-sects/' + departmentCode,
-                                type: 'GET',
-                                success: function(data) {
-                                    $('#sect_id').empty().append(
-                                        '<option value="" disabled selected>เลือกหน่วยงานย่อย</option>'
-                                    );
-
-                                    $.each(data, function(key, sect) {
-                                        $('#sect_id').append('<option value="' + sect.sect_id + '"' +
-                                            (sect.sect_id == selectedSectId ? ' selected' : '') +
-                                            '>' + sect.sect_name + '</option>');
-                                    });
-                                },
-                                error: function(xhr, status, error) {
-                                    console.error('เกิดข้อผิดพลาดในการดึงข้อมูลหน่วยงานย่อย');
-                                }
-                            });
-                        }
-                    });
-                </script>
-
-
-                {{-- <script>
-                    $(document).ready(function() {
-                        $('#department_id').change(function() {
-                            var department_code = $(this).find(':selected').data(
-                                'department-code'); // ดึง department_code จาก attribute data-department-code
-                            var _token = $('meta[name="csrf-token"]').attr('content'); // ดึง CSRF token จาก meta tag
-
-                            if (department_code) {
-                                $.ajax({
-                                    url: "/fetch-sects/" + department_code, // ส่ง department_code ผ่าน URL
-                                    method: "POST",
-                                    headers: {
-                                        'X-CSRF-TOKEN': _token // ส่ง CSRF token ใน header
-                                    },
-                                    success: function(result) {
-                                        // รีเซ็ตตัวเลือกใน dropdown ของ sect_id
-                                        $('#sect_id').html(
-                                            '<option value="" disabled selected>เลือกหน่วยงานย่อย</option>'
-                                        );
-                                        $.each(result, function(index, sect) {
-                                            $('#sect_id').append('<option value="' + sect.sect_id +
-                                                '">' + sect.sect_name + '</option>');
-                                        });
-                                    },
-                                    error: function(xhr, status, error) {
-                                        console.error('เกิดข้อผิดพลาดในการดึงข้อมูลหน่วยงานย่อย');
-                                    }
-                                });
-                            } else {
-                                $('#sect_id').html('<option value="" disabled selected>เลือกหน่วยงานย่อย</option>');
-                            }
-                        });
-                    });
-                </script> --}}
-
-
-
-
-
                 <div class="form-group mb-3">
                     <label for="location_type">ประเภทสถานที่</label>
                     <select name="location_type" id="location_type" class="form-control" required>
@@ -163,11 +75,51 @@
         </div>
     </div>
 </div>
-{{-- <script>
-    $(document).ready(function() {
-        $('#sect_id').select2({
-            placeholder: "เลือกหน่วยงานย่อย",
-            allowClear: true // เพิ่มปุ่มลบการเลือก
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            var initialDepartmentCode = $('#department_id').find(':selected').data('department-code');
+            var initialSectId = "{{ isset($assetLocation) ? $assetLocation->sect_id : '' }}";
+
+            // หากมีค่า initialDepartmentCode แล้วให้ทำการโหลดข้อมูลหน่วยงานย่อย
+            if (initialDepartmentCode) {
+                loadSects(initialDepartmentCode, initialSectId);
+                $('#sect_id').prop('', false);
+            }
+
+            $('#department_id').on('change', function() {
+                var departmentCode = $(this).find(':selected').data('department-code');
+
+                if (departmentCode) {
+                    $('#sect_id').prop('', false);
+                    loadSects(departmentCode);
+                } else {
+                    $('#sect_id').prop('', true).empty().append(
+                        '<option value=""  selected>เลือกหน่วยงานย่อย</option>'
+                    );
+                }
+            });
+
+            function loadSects(departmentCode, selectedSectId = null) {
+                $.ajax({
+                    url: '/fetch-sects/' + departmentCode,
+                    type: 'GET',
+                    success: function(data) {
+                        $('#sect_id').empty().append(
+                            '<option value="" disabled selected>เลือกหน่วยงานย่อย</option>'
+                        );
+
+                        $.each(data, function(key, sect) {
+                            $('#sect_id').append('<option value="' + sect.sect_id + '"' +
+                                (sect.sect_id == selectedSectId ? ' selected' : '') +
+                                '>' + sect.sect_name + '</option>');
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('เกิดข้อผิดพลาดในการดึงข้อมูลหน่วยงานย่อย');
+                    }
+                });
+            }
         });
-    });
-</script> --}}
+    </script>
+@endpush

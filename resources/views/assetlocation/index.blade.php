@@ -36,7 +36,7 @@
                             <th>ประเภทสถานที่</th>
                             <th>Is Current</th>
                             <th>วันเวลาที่ถูกย้าย</th>
-                            <th>Actions</th>
+                            <th>การจัดการ</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,12 +63,11 @@
                                     </div>
 
                                     <form action="{{ route('assetlocation.destroy', $assetLocation->location_id) }}"
-                                        method="POST" style="display:inline-block;">
+                                        method="POST" class="delete-form" style="display:inline-block;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger"
-                                            onclick="return confirm('Are you sure?')">
-                                            <i class="fa-solid fa-trash"></i></button>
+                                        <button type="submit" class="btn btn-danger"><i
+                                                class="fa-solid fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>
@@ -79,3 +78,26 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        document.querySelectorAll('.delete-form').forEach(function(form) {
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // ป้องกันการส่งฟอร์มปกติ
+                Swal.fire({
+                    title: 'คุณต้องการ "ลบกลุ่มอุปกรณ์" ใช่หรือไม่?',
+                    // text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'ใช่, ลบเลย!',
+                    cancelButtonText: 'ยกเลิก'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+    </script>
+@endpush

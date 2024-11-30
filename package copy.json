@@ -2,8 +2,9 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "npm run dev",
-        "start": "npm run dev"
+        "dev": "vite",
+        "build": "vite build",
+        "watch": "vite build --watch"
     },
     "devDependencies": {
         "@popperjs/core": "^2.11.6",

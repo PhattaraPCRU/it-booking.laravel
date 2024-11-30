@@ -51,11 +51,10 @@
                                         @include('asset.edit', ['asset' => $asset])
                                     </div>
                                     <form action="{{ route('assets.destroy', $asset->asset_id) }}" method="POST"
-                                        style="display:inline-block;">
+                                        class="delete-form" style="display:inline-block;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger"
-                                            onclick="return confirm('Are you sure?')"><i
+                                        <button type="submit" class="btn btn-danger"><i
                                                 class="fa-solid fa-trash"></i></button>
                                     </form>
                                 </td>
@@ -67,3 +66,26 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        document.querySelectorAll('.delete-form').forEach(function(form) {
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // ป้องกันการส่งฟอร์มปกติ
+                Swal.fire({
+                    title: 'คุณต้องการ "ลบกลุ่มอุปกรณ์" ใช่หรือไม่?',
+                    // text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'ใช่, ลบเลย!',
+                    cancelButtonText: 'ยกเลิก'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+    </script>
+@endpush

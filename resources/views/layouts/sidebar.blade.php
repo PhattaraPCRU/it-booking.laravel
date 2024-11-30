@@ -8,12 +8,12 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-light" href="{{ route('bookings') }}">
-                        <i class="nav-icon fas fa-calendar-alt"></i> Booking
+                        <i class="nav-icon fas fa-calendar-alt"></i> จองห้อง
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-light" href="{{ route('rooms.show') }}">
-                        <i class="nav-icon fas fa-door-closed"></i> Room
+                        <i class="nav-icon fas fa-door-closed"></i> ห้องบริการ
                     </a>
                 </li>
             </ul>
@@ -106,10 +106,10 @@
         @guest
             <ul class="nav nav-pills nav-sidebar flex-column" role="menu">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Calendar</a>
+                    <a class="nav-link" href="{{ route('welcome') }}">ปฏิทินการจอง</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('rooms.show') }}">Room</a>
+                    <a class="nav-link" href="{{ route('rooms.show') }}">ห้องบริการ</a>
                 </li>
             </ul>
         @endguest

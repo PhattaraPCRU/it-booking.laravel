@@ -52,8 +52,7 @@
                                 </td>
                                 <td width="8%" align="center">{{ $room->description }}</td>
                                 <td width="8%" align="center">
-                                    <a href="{{ route('room.roomasset', $room->room_id) }}"
-                                        class="btn btn-info text-white">
+                                    <a href="{{ route('room.roomasset', $room->room_id) }}" class="btn btn-info text-white">
                                         <i class="nav-icon fas fa-laptop"></i> ดูรายละเอียด</a>
                                 </td>
                                 <td width="3%">
@@ -74,10 +73,13 @@
                                         @method('DELETE')
                                     </form>
 
-                                    <a href="{{ route('roomsdestroy', $room->room_id) }}" class="btn btn-danger"
-                                        onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this room?')) { document.getElementById('delete-form-{{ $room->room_id }}').submit(); }">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </a>
+                                    <form action="{{ route('roomsdestroy', $room->room_id) }}" method="POST"
+                                        class="delete-form" style="display:inline-block;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger"><i
+                                                class="fa-solid fa-trash"></i></button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
@@ -87,3 +89,26 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        document.querySelectorAll('.delete-form').forEach(function(form) {
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // ป้องกันการส่งฟอร์มปกติ
+                Swal.fire({
+                    title: 'คุณต้องการ "ลบประเภทอุปกรณ์" ใช่หรือไม่?',
+                    // text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'ใช่, ลบเลย!',
+                    cancelButtonText: 'ยกเลิก'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+    </script>
+@endpush

@@ -8,12 +8,12 @@
             <form action="{{ route('rooms.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
-                    <label for="room_name" class="form-label">Room Name</label>
+                    <label for="room_name" class="form-label">ชื่อห้อง</label>
                     <input type="text" class="form-control" id="room_name" name="room_name" required>
                 </div>
 
                 <div class="mb-3">
-                    <label for="room_type" class="form-label">Room Type</label>
+                    <label for="room_type" class="form-label">ประเภทห้อง</label>
                     <select class="form-control" name="room_type" id="room_type" required>
                         <option value="" selected>เลือกประเภทห้อง</option>
                         @foreach ($roomtypes as $room)
@@ -24,18 +24,18 @@
 
 
                 <div class="mb-3">
-                    <label for="capacity" class="form-label">Capacity</label>
+                    <label for="capacity" class="form-label">ความจุ</label>
                     <input type="text" class="form-control" id="capacity" name="capacity" required>
                 </div>
 
                 <div class="mb-3">
-                    <label for="description" class="form-label">Description</label>
+                    <label for="description" class="form-label">คำอธิบาย</label>
                     <input type="text" class="form-control" id="description" name="description" required>
                 </div>
 
 
                 <div class="mb-3">
-                    <label for="room_pic" class="form-label">Room Images:</label>
+                    <label for="room_pic" class="form-label">รูปภาพ</label>
                     <input type="file" name="room_pic[]" id="roompic" class="form-control" multiple
                         onchange="previewImages(event)">
                 </div>

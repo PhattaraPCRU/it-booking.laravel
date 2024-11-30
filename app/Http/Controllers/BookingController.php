@@ -103,8 +103,8 @@ class BookingController extends Controller
         $booking->update([
             'user_id' => auth()->id(),
             'is_classroom' => $request->has('is_classroom') ? 1 : 0,
-            // 'is_ext' => $request->has('is_ext') ? 1 : 0,
-            'is_ext' => $request->department_id == 19 ? 1 : 0,
+            'is_ext' => $request->has('is_ext') ? 1 : 0,
+            // 'is_ext' => $request->department_id == 19 ? 1 : 0,
             'reason' => $request->reason,
             'sect_id' => $request->sect_id,
             'department_id' => $request->department_id,

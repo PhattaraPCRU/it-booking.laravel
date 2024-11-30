@@ -25,7 +25,8 @@
                     <h4>IT-Booking Calendar</h4>
                 </div>
                 {{-- <div id="calendar" style="width: 70%; margin: 0 auto;" class="mb-3"></div> --}}
-                <div id="calendar" style="width: 70%; margin: 0 auto;" class="mb-2"></div>
+                <div id="calendar" style="width: 95%; margin: 0 auto;" class="mb-2"></div>
+
                 <br>
             </div>
             {{-- <div class="card" style="background-color: #ffe261;">
@@ -73,7 +74,8 @@
                         hour: '2-digit',
                         minute: '2-digit',
                         hour12: false
-                    }
+                    },
+                    height: 800, // กำหนดความสูงที่ต้องการ
                 });
                 calendar.render();
             });
